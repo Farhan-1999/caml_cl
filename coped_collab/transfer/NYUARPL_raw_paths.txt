@@ -1,0 +1,16 @@
+sequence/indoor/NYUARPL/ptah_nyu_gamelab_2023_05_14_02_2023-05-14-18-29-26.bag
+sequence/indoor/NYUARPL/race1_nyu_gamelab_2023_05_14_02-2023-05-14-18-29-08.bag
+sequence/indoor/NYUARPL/race5_nyu_gamelab_2023_05_14_02_2023-05-14-18-29-08.bag
+sequence/indoor/NYUARPL/wilbur_nyu_gamelab_2023_05_14_02_2023-05-14-18-29-28.bag
+video/depth_video/NYUARPL_ptah_depth_n.mp4
+video/depth_video/NYUARPL_race1_depth_n.mp4
+video/depth_video/NYUARPL_race5_depth_n.mp4
+video/depth_video/NYUARPL_wilbur_depth_n.mp4
+groundtruth_semantics/NYUARPL/ptah/pred.json
+groundtruth_semantics/NYUARPL/race1/pred.json
+groundtruth_semantics/NYUARPL/race5/pred.json
+groundtruth_semantics/NYUARPL/wilbur/pred.json
+groundtruth_semantics/NYUARPL/ptah/Annotations/
+groundtruth_semantics/NYUARPL/race1/Annotations/
+groundtruth_semantics/NYUARPL/race5/Annotations/
+groundtruth_semantics/NYUARPL/wilbur/Annotations/

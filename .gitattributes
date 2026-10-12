@@ -1,0 +1,7 @@
+# The code is written on Windows and runs on Linux: store text with LF line endings so shell
+# scripts and Python run unchanged on the GPU machine.
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.jpg binary
+*.png binary

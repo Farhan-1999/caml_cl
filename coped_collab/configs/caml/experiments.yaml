@@ -1,0 +1,41 @@
+# Track A CAML reproduction (NYUARPL, ptah + race1): every experiment, run for every seed.
+# Used by tools/run_experiments.py (training order) and tools/summarize.py (tables).
+# Config paths are relative to this file. A student of seed k distills from the teacher of seed k.
+seeds: [0, 1, 2]
+
+experiments:
+  - id: E1
+    what: Teacher, both robots, RGB + depth + IR
+    mirrors: CAML teacher model
+    configs: [teacher_rgb_depth_ir.yaml]
+
+  - id: E2
+    what: CAML student, both robots share RGB only (distilled from E1)
+    mirrors: CAML Table 6, main segmentation result
+    configs: [student_rgb.yaml]
+
+  - id: E3
+    what: Students for the other modality subsets (distilled from E1)
+    mirrors: CAML Table 4, which modality to keep at test time
+    configs: [student_rgb_depth.yaml, student_rgb_ir.yaml, student_depth_ir.yaml, student_depth.yaml, student_ir.yaml]
+
+  - id: E4
+    what: Pre-fusion CAML, teacher and RGB student
+    mirrors: CAML Pre-fusion ablation (Sec. 4.2, App. A.3.2)
+    configs: [prefusion_teacher_rgb_depth_ir.yaml, prefusion_student_rgb.yaml]
+
+  - id: E5
+    what: CAML's original two-modality setup, RGB + depth teacher -> RGB student
+    mirrors: CAML segmentation setup; with E2, Table 3 (does an extra teacher modality help)
+    configs: [teacher_rgb_depth.yaml, student_rgb_from_rgb_depth.yaml]
+
+  - id: E6
+    what: Students tested without race1; no training, read from every run's metrics.json
+    mirrors: CAML Fig. 4, fewer agents at test time
+    configs: []
+
+  - id: E7
+    what: RGB student without distillation (cross-entropy only)
+    mirrors: CAML Table 2, RGB-only ablation
+    configs: [student_rgb_nokd.yaml]
+    optional: true

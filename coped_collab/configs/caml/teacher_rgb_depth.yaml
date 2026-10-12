@@ -1,0 +1,6 @@
+# E5 teacher in CAML's original two-modality setting: both robots, RGB + depth.
+base: ../track_a.yaml
+name: caml_teacher_rgb_depth
+model:
+  fusion: post
+  modalities: [rgb, depth_zoe]

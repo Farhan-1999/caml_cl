@@ -1,0 +1,151 @@
+{
+  "config": "configs/track_a.yaml",
+  "sequence": "NYUARPL",
+  "robots": [
+    "ptah",
+    "race1"
+  ],
+  "modalities": [
+    "rgb",
+    "depth_zoe",
+    "ir"
+  ],
+  "window_ns": [
+    1684103525582058430,
+    1684103732544715643
+  ],
+  "window_s": 206.96,
+  "complete_samples_30hz": 6206,
+  "dropped": {
+    "outside_window": 9582,
+    "ptah.rgb": 0,
+    "ptah.depth_zoe": 0,
+    "ptah.ir": 0,
+    "race1.rgb": 0,
+    "race1.depth_zoe": 0,
+    "race1.ir": 0
+  },
+  "in_buffers_30hz": 975,
+  "pairing_offset_ms": {
+    "ptah.rgb": {
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    },
+    "ptah.depth_zoe": {
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    },
+    "ptah.ir": {
+      "median": 0.0,
+      "p95": 0.0,
+      "max": 0.0
+    },
+    "race1.rgb": {
+      "median": 8.8,
+      "p95": 16.37,
+      "max": 33.37
+    },
+    "race1.depth_zoe": {
+      "median": 8.8,
+      "p95": 16.37,
+      "max": 33.37
+    },
+    "race1.ir": {
+      "median": 12.3,
+      "p95": 24.55,
+      "max": 45.73
+    }
+  },
+  "splits": {
+    "train": {
+      "samples": 1345,
+      "rate_hz": 10,
+      "seconds_covered": 134.2,
+      "blocks_s": [
+        [
+          2.53,
+          67.43
+        ],
+        [
+          102.52,
+          167.42
+        ],
+        [
+          202.51,
+          206.92
+        ]
+      ],
+      "class_share": [
+        0.07041,
+        0.42868,
+        0.13023,
+        0.00774,
+        0.06262,
+        0.0867,
+        0.00053,
+        0.00534,
+        0.00092
+      ],
+      "unlabeled_share": 0.20682,
+      "out_of_range_pixels": 0
+    },
+    "val": {
+      "samples": 300,
+      "rate_hz": "all frames",
+      "seconds_covered": 9.9,
+      "blocks_s": [
+        [
+          72.52,
+          77.47
+        ],
+        [
+          172.52,
+          177.5
+        ]
+      ],
+      "class_share": [
+        0.04866,
+        0.39493,
+        0.28434,
+        0.02609,
+        0.02481,
+        0.11869,
+        2e-05,
+        0.00754,
+        0.01926
+      ],
+      "unlabeled_share": 0.07565,
+      "out_of_range_pixels": 0
+    },
+    "test": {
+      "samples": 899,
+      "rate_hz": "all frames",
+      "seconds_covered": 29.9,
+      "blocks_s": [
+        [
+          82.51,
+          97.47
+        ],
+        [
+          182.51,
+          197.47
+        ]
+      ],
+      "class_share": [
+        0.07168,
+        0.38326,
+        0.11775,
+        0.00272,
+        0.01784,
+        0.06544,
+        0.0004,
+        0.00342,
+        0.00191
+      ],
+      "unlabeled_share": 0.33558,
+      "out_of_range_pixels": 0
+    }
+  }
+}

@@ -1,0 +1,6 @@
+# CAML teacher: both robots, all three modalities, trained with cross-entropy.
+base: ../track_a.yaml
+name: caml_teacher_rgb_depth_ir
+model:
+  fusion: post
+  modalities: [rgb, depth_zoe, ir]

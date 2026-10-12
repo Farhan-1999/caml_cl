@@ -1,0 +1,60 @@
+{
+  "ptah": {
+    "counts": {
+      "rgb": 15788,
+      "ir": 15788,
+      "ir_right": 15788,
+      "lidar": 5264,
+      "label": 15788,
+      "depth_zoe": 15788
+    },
+    "checks": {
+      "label_stamps_in_rgb": 15788,
+      "label_stamps_total": 15788,
+      "rgb_without_label": 0
+    }
+  },
+  "race1": {
+    "counts": {
+      "rgb": 10204,
+      "ir": 10649,
+      "ir_right": 10650,
+      "label": 10204,
+      "depth_zoe": 10204
+    },
+    "checks": {
+      "label_stamps_in_rgb": 10204,
+      "label_stamps_total": 10204,
+      "rgb_without_label": 0
+    }
+  },
+  "race5": {
+    "counts": {
+      "rgb": 15385,
+      "ir": 15472,
+      "ir_right": 15472,
+      "label": 15385,
+      "depth_zoe": 15385
+    },
+    "checks": {
+      "label_stamps_in_rgb": 15385,
+      "label_stamps_total": 15385,
+      "rgb_without_label": 0
+    }
+  },
+  "wilbur": {
+    "counts": {
+      "rgb": 15575,
+      "ir": 15749,
+      "ir_right": 15749,
+      "lidar": 5248,
+      "label": 15575,
+      "depth_zoe": 15575
+    },
+    "checks": {
+      "label_stamps_in_rgb": 15575,
+      "label_stamps_total": 15575,
+      "rgb_without_label": 0
+    }
+  }
+}

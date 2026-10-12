@@ -1,0 +1,8 @@
+# E3 student: both robots share RGB + IR; distilled from the RGB+depth+IR teacher of the same seed.
+base: ../track_a.yaml
+name: caml_student_rgb_ir
+model:
+  fusion: post
+  modalities: [rgb, ir]
+distill:
+  teacher_run: ../runs/caml_teacher_rgb_depth_ir/seed{seed}

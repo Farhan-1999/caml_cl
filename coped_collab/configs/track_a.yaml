@@ -1,0 +1,70 @@
+# Track A: faithful CAML reproduction on CoPeD NYUARPL, ptah (ground robot, ego) + race1 (drone).
+# Relative paths resolve against the coped_collab folder; override with --set data.export_root=...
+name: track_a
+
+data:
+  export_root: ../exported          # output of tools/export_sequence.py
+  splits_dir: splits/track_a        # written by tools/build_splits.py and kept in git
+  cache_dir: ../cache/track_a       # pre-resized arrays from tools/build_cache.py; null = decode the export
+  sequence: NYUARPL
+  ego: ptah                         # labels and predictions are for this robot's camera view
+  collaborators: [race1]
+  modalities: [rgb, depth_zoe, ir]  # loaded for every robot; each model uses its own subset
+  num_classes: 9
+  ignore_index: 255
+  image_size: 224                   # CAML resizes every input to 224 x 224
+  pairing_tolerance_s: 0.05         # race1 frames and IR frames must be within 50 ms
+
+  window:                           # use only the time the drone is airborne
+    flight_of: race1
+    min_height_m: 0.5
+    trim_s: 5.0                     # drop takeoff and landing
+
+  split:                            # block-interleaved temporal split
+    period_s: 100
+    parts: {train: 70, val: 10, test: 20}
+    buffer_s: 5.0                   # dropped around every boundary between parts
+    rate_hz: {train: 10, val: null, test: null}   # null keeps every frame
+
+  noise:                            # CAML adds noise to the ground robot's inputs
+    enabled: true
+    robots: [ptah]
+    modalities: [rgb, depth_zoe, ir]
+    gaussian_sigma: 0.12            # in [0, 1] intensity units (ImageNet-C severity 2)
+    eval_seed: 0                    # val/test noise is fixed per sample
+
+model:                              # CAML segmentation model (App. A.3); experiment configs set modalities
+  fusion: post                      # post = CAML (robots per modality, then modalities); pre = Pre-fusion CAML
+  modalities: [rgb, depth_zoe, ir]
+  pretrained: true                  # ImageNet ResNet-18 encoders
+  feature_dim: 512
+  attention_heads: 8
+  decoder_dropout: 0.1
+
+train:                              # CAML App. A.4
+  out_dir: ../runs                  # runs go to <out_dir>/<name>/seed<k>
+  epochs: 200
+  batch_size: 32
+  lr: 1.0e-3                        # Adam with cosine annealing
+  weight_decay: 0.0
+  num_workers: 8
+  amp: true                         # bf16/fp16 autocast on GPU
+  eval_every: 1
+
+distill:                            # CAML App. A.5; used when teacher_run is set
+  teacher_run: null                 # run dir of the teacher; "{seed}" is replaced by the student's seed
+  alpha: 0.9
+  temperature: 4.0
+
+eval:
+  rare_classes: [6, 8]              # light, table/furniture: < 0.1% of training pixels; left out of mIoU-common
+  subsets: selected                 # input combinations evaluated every eval epoch: selected (list below),
+                                    # robots (together + each alone), all (every combination: 63) or full
+  subset_splits: [val, test]        # splits evaluated over the combinations; the best checkpoint is still
+                                    # chosen on val with full inputs only
+  selected_subsets:                 # what each robot sends; each model keeps only its own modalities
+    - {label: everything shared, ptah: [rgb, depth_zoe, ir], race1: [rgb, depth_zoe, ir]}  # upper bound
+    - {label: no communication, ptah: [rgb, depth_zoe, ir], race1: []}         # what collaboration adds
+    - {label: race1 sends RGB only, ptah: [rgb, depth_zoe, ir], race1: [rgb]}  # ego sensors are free; 1 map sent
+    - {label: RGB on both robots, ptah: [rgb], race1: [rgb]}                   # CAML's reduced-modality setting
+    - {label: ptah sensors fail, ptah: [], race1: [rgb, depth_zoe, ir]}        # race1 alone

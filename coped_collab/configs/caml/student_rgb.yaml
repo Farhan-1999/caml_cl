@@ -1,0 +1,9 @@
+# CAML student: both robots share only RGB at test time; distilled from the RGB+depth+IR teacher
+# of the same seed (CAML Table 6 setting, with IR added to the teacher).
+base: ../track_a.yaml
+name: caml_student_rgb
+model:
+  fusion: post
+  modalities: [rgb]
+distill:
+  teacher_run: ../runs/caml_teacher_rgb_depth_ir/seed{seed}

@@ -1,0 +1,8 @@
+# E4 Pre-fusion CAML student: RGB only, distilled from the pre-fusion teacher of the same seed.
+base: ../track_a.yaml
+name: caml_prefusion_student_rgb
+model:
+  fusion: pre
+  modalities: [rgb]
+distill:
+  teacher_run: ../runs/caml_prefusion_teacher_rgb_depth_ir/seed{seed}

@@ -1,0 +1,6 @@
+# E4 Pre-fusion CAML teacher (App. A.3.2): each robot fuses its own modalities, then robots are combined.
+base: ../track_a.yaml
+name: caml_prefusion_teacher_rgb_depth_ir
+model:
+  fusion: pre
+  modalities: [rgb, depth_zoe, ir]

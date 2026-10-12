@@ -1,0 +1,9 @@
+# E3 student: both robots share depth only; distilled from the RGB+depth+IR teacher.
+# Depth here is ZoeDepth computed from RGB, so this is a "what to send", not a "which sensor works" case.
+base: ../track_a.yaml
+name: caml_student_depth
+model:
+  fusion: post
+  modalities: [depth_zoe]
+distill:
+  teacher_run: ../runs/caml_teacher_rgb_depth_ir/seed{seed}

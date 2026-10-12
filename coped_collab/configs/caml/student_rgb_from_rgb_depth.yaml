@@ -1,0 +1,9 @@
+# E5 student: RGB only, distilled from the RGB+depth teacher (exactly CAML's segmentation setup).
+# Compared with E2 it shows whether adding IR to the teacher helps (CAML Table 3 analogue).
+base: ../track_a.yaml
+name: caml_student_rgb_from_rgb_depth
+model:
+  fusion: post
+  modalities: [rgb]
+distill:
+  teacher_run: ../runs/caml_teacher_rgb_depth/seed{seed}

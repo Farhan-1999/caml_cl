@@ -1,0 +1,13 @@
+# Training and evaluation. Install the torch/torchvision build that matches the machine's CUDA,
+# see https://pytorch.org/get-started/locally/
+torch>=2.1
+torchvision>=0.16
+numpy>=1.24
+opencv-python-headless>=4.8   # or opencv-python on a desktop; never both
+pyyaml>=6.0
+
+# Only for tools/export_sequence.py (reading the rosbags); not needed where the export is copied.
+rosbags>=0.10
+
+# Reports and figures (tools/summarize.py, tools/qualitative.py)
+matplotlib>=3.7

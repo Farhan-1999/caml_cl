@@ -1,0 +1,35 @@
+# Git publishes only the code and its documentation. Raw data (groundtruth_semantics/, sequence/,
+# video/), the export (exported/), the cache (cache/), training output (runs/), papers and archives
+# stay out: every top-level entry is ignored unless it is listed below.
+/*
+!/.gitignore
+!/.gitattributes
+!/AGENTS.md
+!/coped_collab/
+
+# Generated files inside the code folders
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Training outputs, weights and data files must never be committed, wherever they end up
+runs/
+outputs/
+checkpoints/
+wandb/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine
+*.bag
+*.mp4
+*.npy
+*.npz
+*.zip
+*.tar
+*.tar.gz

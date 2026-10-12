@@ -1,0 +1,9 @@
+# E7 (optional) ablation: the E2 student trained with cross-entropy only, no teacher
+# (CAML Table 2 "RGB-only" row). The gap to E2 is what distillation adds.
+base: ../track_a.yaml
+name: caml_student_rgb_nokd
+model:
+  fusion: post
+  modalities: [rgb]
+distill:
+  teacher_run: null
